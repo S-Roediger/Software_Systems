@@ -168,6 +168,7 @@ public class Card
 		char rank;
 		try {
 			a = in.readLine();
+			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -199,7 +200,6 @@ public class Card
 		char rank = 0;
 		suit = in.readChar();
 		rank = in.readChar();
-
 		Card c = new Card(suit, rank);
 		return c;
 	}
@@ -222,6 +222,7 @@ public class Card
 		try {
 			if (in.readObject() != null) {
 				c = (Card) in.readObject();
+				in.close();
 			} else {
 				throw new IOException();
 			}

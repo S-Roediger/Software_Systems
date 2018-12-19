@@ -5,6 +5,7 @@ import org.junit.Test;
 import ss.week6.dictionaryattack.DictionaryAttack;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -21,16 +22,12 @@ public class DictionaryAttackTest {
     private DictionaryAttack dictionaryAttack;
 
     /** Path to the text file */
-    private static final String PATH = ""; //Your path to the test folder
+    private static final String PATH = "/Users/sarah.roediger/SSHome/eclipse-workspace/softwaresystems/src/ss/week6/test/"; //Your path to the test folder
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         dictionaryAttack = new DictionaryAttack();
-        try {
-            dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
     }
 
     /**
@@ -38,7 +35,11 @@ public class DictionaryAttackTest {
      */
     @Test
     public void testGetPasswordHash() {
-        assertEquals("5f4dcc3b5aa765d61d8327deb882cf99", dictionaryAttack.getPasswordHash("password"));
+        try {
+			assertEquals("5f4dcc3b5aa765d61d8327deb882cf99", dictionaryAttack.getPasswordHash("password"));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
