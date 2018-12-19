@@ -167,8 +167,7 @@ public class Card
 		char suit;
 		char rank;
 		try {
-			a = in.readLine();
-			in.close();
+			a = in.readLine();	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -183,6 +182,11 @@ public class Card
 			}
 		} else if (a == null) {
 			throw new EOFException();
+		}
+		try {
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
