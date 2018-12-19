@@ -18,6 +18,12 @@ public class DictionaryAttack {
 	private Map<String, String> hashDictionary;
 	private static final String PATH = "/Users/sarah.roediger/SSHome/eclipse-workspace/softwaresystems/src/ss/week6/dictionaryattack/";
 
+	
+	public DictionaryAttack() {
+		passwordMap = new HashMap<String, String>();
+		hashDictionary = new HashMap<String, String>();
+	}
+	
 	/**
 	 * Reads a password file. Each line of the password file has the form:
 	 * username: encodedpassword
@@ -28,7 +34,7 @@ public class DictionaryAttack {
 	 * @param filename
 	 */
 	public void readPasswords(String filename) {
-		passwordMap = new HashMap<String, String>();
+		
 		File file = new File(filename);
 		Scanner sc = null;
 		try {
@@ -92,7 +98,7 @@ public class DictionaryAttack {
 	 */
     public void addToHashDictionary(String filename) {
     	Scanner sc = null;
-    	hashDictionary = new HashMap<String, String>();
+    	
 		try {
 			sc = new Scanner(new FileReader(filename));
 		} catch (FileNotFoundException e1) {
@@ -118,8 +124,8 @@ public class DictionaryAttack {
 		
 		for (String u:users) {
 			for (String p:pass) {
-				if (passwordMap.get(u).equals(hashDictionary.get(pass))) {
-					System.out.println(u + ": " + pass);
+				if (passwordMap.get(u).equals(hashDictionary.get(p))) {
+					System.out.println(u + ": " + p);
 				}
 			}
 			
