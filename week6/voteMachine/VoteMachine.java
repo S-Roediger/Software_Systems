@@ -29,6 +29,9 @@ public class VoteMachine {
 	
 	public void vote(String party) {
 		voteList.addVote(party);
+		if (!partyList.getParties().contains(party)) {
+			partyList.addParty(party);
+		}
 	}
 	
 	public ArrayList<String> getParties() {

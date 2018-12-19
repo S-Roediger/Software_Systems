@@ -12,20 +12,13 @@ public class VoteList extends Observable {
 	public void addVote(String party) {
 		Set<String> parties = voteList.keySet();
 		Boolean check = false;
-		
-		for (String p:parties) {
-			if (p.equals(party)) {
-				voteList.put(party, voteList.get(party)+1);
-			}
-			
-		}
-		
-		if (!check) {
-			voteList.put(party, 1);
-			
-		} else if (check) {
+
+		if (parties.contains(party)) {
 			voteList.put(party, voteList.get(party)+1);
+		} else {
+			voteList.put(party, 1);
 		}
+
 		setChanged();
 		notifyObservers("vote");
 		
