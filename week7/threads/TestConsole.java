@@ -1,6 +1,6 @@
 package ss.week7.threads;
 
-import java.util.Scanner;
+
 
 public class TestConsole extends Thread {
 	
@@ -10,12 +10,15 @@ public class TestConsole extends Thread {
 
 	}
 
-	private synchronized void sum() throws InterruptedException {
-		//Scanner sc = new Scanner(System.in);
-		int a = Console.readInt("Please, provide an integer.");
-		int b = Console.readInt("Please, provide an integer.");
-		//sc.close();
-		String a1 = a + b + "";
+	private void sum() throws InterruptedException {
+		
+		int a = Console.readInt("Please, provide one integer.");
+		Console.println(a+"");
+		
+		int b = Console.readInt("Please, provide one integer.");
+		Console.println(b+"");
+		
+		
 		Console.println(currentThread().getName() + " " + a + " " + b);
 	
 
