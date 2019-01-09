@@ -14,7 +14,7 @@ public class Account {
 	
 	public void transaction(double amount) {
 		lock.lock();
-		while (balance < -1000 && amount > -(1000-balance)) {
+		while (balance+amount < -1000) {
 			try {
 				toLow.await();
 			} catch (InterruptedException e) {
