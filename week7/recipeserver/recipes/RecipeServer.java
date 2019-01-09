@@ -1,4 +1,4 @@
-package ss.week7.recipeserver;
+package ss.week7.recipeserver.recipes;
 
 import java.io.IOException;
 import java.net.InetAddress;
