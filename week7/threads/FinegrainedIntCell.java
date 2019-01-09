@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class FinegrainedIntCell implements IntCell {
 
 	private boolean consumed = true;
-	private final ReentrantLock lock = new ReentrantLock();
+	private static final ReentrantLock lock = new ReentrantLock();
 	private final Condition cconsumed = lock.newCondition();
 	private final Condition produced = lock.newCondition();
 	private int val;
