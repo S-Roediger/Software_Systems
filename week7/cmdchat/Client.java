@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import ss.week7.challenge.chatbox.Server;
+
 
 /**
  * Client class for a simple client-server application
@@ -70,7 +72,11 @@ public class Client extends Thread{
 	 */
 	public Client(String name, InetAddress host, int port)
 			throws IOException {
-		// TODO insert body
+		this.clientName = name;
+		sock = new Socket(host, port);
+		System.out.println("Created Socket!");
+		in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+		out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
 	}
 
 	/**
@@ -78,18 +84,41 @@ public class Client extends Thread{
 	 * be forwarded to the MessageUI
 	 */
 	public void run() {
-		// TODO insert body
+		try {
+			String line = in.readLine();
+			while (line != null) {
+				print(line);
+				line = in.readLine();
+			}
+			shutdown();
+		} catch (IOException e) {
+			shutdown();
+		}
 	}
 
-	/** send a message to a ClientHandler. */
+	/** send a message to a ClientHandler. 
+	 * @throws IOException */
 	public void sendMessage(String msg) {
-		// TODO insert body
+		try {
+			out.write(msg);
+			out.newLine();
+			out.flush();
+		} catch (IOException e) {
+			shutdown();
+		}
+
 	}
 
-	/** close the socket connection. */
+	/** close the socket connection. 
+	 * @throws IOException */
 	public void shutdown() {
 		print("Closing socket connection...");
-		// TODO insert body
+		try {
+			sock.close();
+		} catch (IOException e) {
+			System.out.println("Error when closing socket!");
+			e.printStackTrace();
+		}
 	}
 
 	/** returns the client name */
